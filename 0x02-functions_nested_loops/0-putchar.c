@@ -1,21 +1,23 @@
-#include "0-putchar.c"
+#include "main.h"
 
 /**
- * main - The O'l reliable main
+ * main - prints _putchar
  *
- * Return: int
+ * Description: prints _putchar
+ *
+ * Return: 0 (Success)
  */
 
 int main(void)
 {
-	char c[] = "0-putchar.c";
-	int i;
+	char text[9] = "_putchar";
+	int i = 0;
 
-	for (i = 0; i < 9; i++)
+	for (i = 0; i < 8; i++)
 	{
-		_putchar(c[i]);
+		_putchar(text[i]);
 	}
 	_putchar('\n');
-	return (0);
 
+	return (0);
 }
