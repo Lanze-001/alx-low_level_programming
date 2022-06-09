@@ -27,3 +27,6 @@ int largest_number(int a, int b, int c)
 
 	return (largest);
 }
+
+gcc 2-largest_number.c
+
