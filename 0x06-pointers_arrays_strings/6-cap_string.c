@@ -1,67 +1,30 @@
 #include "main.h"
-
-int is_sep(char c);
-char cap_char(char c);
-
 /**
  * cap_string - capitalizes all words of a string
- * @str: string whose wordsto capitalize
- *
- * Description:
- * Separators of words: space, tabulation, new line,
- * ,, ;, ., !, ?, ", (, ), {, and }
- *
- * Return: pointer to str whose words have been capitalized
+ * @s: input string.
+ * Return: the pointer to dest.
  */
-char *cap_string(char *str)
+
+char *cap_string(char *s)
 {
-	int i;
-	int sep_prev = 0;
+	int count = 0, i;
+	int sep_words[] = {32, 9, 10, 44, 59, 46, 33, 63, 34, 40, 41, 123, 125};
 
-	for (i = 0; str[i] != '\0'; i++)
+	if (*(s + count) >= 97 && *(s + count) <= 122)
+		*(s + count) = *(s + count) - 32;
+	count++;
+	while (*(s + count) != '\0')
 	{
-		/* check if the current charater is a separator */
-		if (is_sep(str[i]))
+		for (i = 0; i < 13; i++)
 		{
-			sep_prev = 1;
+			if (*(s + count) == sep_words[i])
+			{
+				if ((*(s + (count + 1)) >= 97) && (*(s + (count + 1)) <= 122))
+					*(s + (count + 1)) = *(s + (count + 1)) - 32;
+				break;
+			}
 		}
-		/* check if the previous character was a separator */
-		else if (sep_prev)
-		{
-			str[i] = cap_char(str[i]);
-			sep_prev = 0;
-		}
+		count++;
 	}
-
-	/* capitalize the first character if string is non-empty */
-	if (i > 0)
-		str[0] = cap_char(str[0]);
-
-	return (str);
-}
-
-/**
- * is_sep - checks whether a given character is a separator
- * @c: character to be checked
- *
- * Description:
- * Separators are: space, tabulation, new line,
- * ,, ;, ., !, ?, ", (, ), {, and }
- *
- * Return: 1 if c is a separator. 0 otherwise
- */
-int is_sep(char c)
-{
-	char seps[] = {' ', '\t', '\n', ',', ';', '.', '!', '?', '\"', '(', ')',
-		                '{', '}'};
-	int n = sizeof(seps) / sizeof(seps[0]);
-	int i;
-
-	for (i = 0; i < n; i++)
-	{
-		if (c == seps[i])
-			return (1);
-	}
-
-	return (0);
+	return (s);
 }
