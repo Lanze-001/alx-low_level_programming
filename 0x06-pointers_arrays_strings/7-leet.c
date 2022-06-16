@@ -2,30 +2,29 @@
 
 /**
  * leet -  encodes a string into 1337
- * @str: string to encode
- *
- * Return: pointer to encoded str
+ * @s: input string.
+ * Return: pointer to dest.
  */
-char *leet(char *str)
+
+char *leet(char *s)
 {
-	/* conversion tables */
-	char letters[] = "aeotl";
-	char values[] = "43071";
+	int count = 0, i;
+	int low_letters[] = {97, 101, 111, 116, 108};
+	int upp_letters[] = {65, 69, 79, 84, 76};
+	int numbers[] = {52, 51, 48, 55, 49};
 
-	int i;
-	int j;
-
-	for (i = 0; str[i] != '\0'; i++)
+	while (*(s + count) != '\0')
 	{
-		for (j = 0; letters[j] != '\0'; j++)
+		for (i = 0; i < 5; i++)
 		{
-			if (str[i] == letters[j] || str[i] == letters[j] - 32)
+			if (*(s + count) == low_letters[i] || *(s + count) == upp_letters[i])
 			{
-				str[i] = values[j];
+				*(s + count) = numbers[i];
 				break;
 			}
 		}
+		count++;
 	}
-	
-	return (str);
+
+	return (s);
 }
